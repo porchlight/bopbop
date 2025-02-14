@@ -3,11 +3,23 @@ const fonts = [
   'Courier New, monospace',
   'Georgia, serif',
   'Times New Roman, serif',
-  'Verdana, sans-serif'
+  'Verdana, sans-serif',
+  'Trebuchet MS, sans-serif',
+  'Lucida Sans Unicode, Lucida Grande, sans-serif',
+  'Tahoma, sans-serif',
+  'Palatino Linotype, Book Antiqua, Palatino, serif',
+  'Impact, Charcoal, sans-serif',
+  'Comic Sans MS, cursive, sans-serif',
+  'Arial Black, Gadget, sans-serif',
+  'Lucida Console, Monaco, monospace',
+  'Gill Sans, sans-serif',
+  'Helvetica, sans-serif'
 ];
 
 const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
 document.body.style.fontFamily = randomFont;
+
+let currentPlayingModal = null;
 
 fetch('modals.php')
   .then(response => response.json())
@@ -92,6 +104,10 @@ fetch('modals.php')
     setTimeout(() => {
       document.querySelectorAll('.modal-body iframe').forEach(iframe => {
         const player = SC.Widget(iframe);
+        player.bind(SC.Widget.Events.PLAY, () => {
+          currentPlayingModal = iframe.closest('.modal');
+          document.getElementById('now-playing').style.display = 'block';
+        });
         player.bind(SC.Widget.Events.FINISH, () => {
           console.log('Sound has finished playing on:', iframe);
           const currentModal = iframe.closest('.modal');
@@ -108,9 +124,18 @@ fetch('modals.php')
             if (nextIframe) {
               const nextPlayer = SC.Widget(nextIframe);
               nextPlayer.play();
+              currentPlayingModal = iframe.closest('.modal');
             }
           }
         });
       });
     }, 1000); // Delay to ensure the modal content is loaded
+
+    // Handle "Now Playing" link click
+    document.getElementById('now-playing').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (currentPlayingModal) {
+        currentPlayingModal.style.display = 'block';
+      }
+    });
   });

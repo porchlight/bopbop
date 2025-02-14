@@ -73,3 +73,13 @@ footer {
   font-size: 14px;
   background: rgba(0, 0, 0, 0.5);
 }
+#now-playing {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+}
