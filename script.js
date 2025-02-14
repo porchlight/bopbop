@@ -87,4 +87,30 @@ fetch('modals.php')
       starEl.style.zIndex = 1; // Ensure white stars are below yellow stars
       document.body.appendChild(starEl);
     }
+
+    // Bind to the FINISH event for all SoundCloud widgets
+    setTimeout(() => {
+      document.querySelectorAll('.modal-body iframe').forEach(iframe => {
+        const player = SC.Widget(iframe);
+        player.bind(SC.Widget.Events.FINISH, () => {
+          console.log('Sound has finished playing on:', iframe);
+          const currentModal = iframe.closest('.modal');
+          if (currentModal) {
+            currentModal.style.display = 'none';
+          }
+
+          // Open a different modal and play its SoundCloud widget
+          const otherModals = Array.from(document.querySelectorAll('.modal')).filter(modal => modal !== currentModal);
+          if (otherModals.length > 0) {
+            const nextModal = otherModals[Math.floor(Math.random() * otherModals.length)];
+            nextModal.style.display = 'block';
+            const nextIframe = nextModal.querySelector('iframe');
+            if (nextIframe) {
+              const nextPlayer = SC.Widget(nextIframe);
+              nextPlayer.play();
+            }
+          }
+        });
+      });
+    }, 1000); // Delay to ensure the modal content is loaded
   });
