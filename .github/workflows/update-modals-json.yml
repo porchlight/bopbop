@@ -22,6 +22,8 @@ jobs:
         run: bash generateModalsJson.sh
 
       - name: Commit changes
+        env:
+          BOPBOP_TOKEN: ${{ secrets.BOPBOP_TOKEN }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
