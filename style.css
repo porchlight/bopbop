@@ -3,6 +3,16 @@ body {
   background: black;
   height: 100vh;
 }
+#controls {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+}
+#controls select {
+  margin-left: 10px;
+  padding: 5px;
+}
 .star {
   position: absolute;
   width: 20px;
@@ -89,7 +99,7 @@ footer {
 }
 #now-playing {
   position: fixed;
-  top: 0;
+  top: 35px;
   right: 0;
   padding: 10px;
   color: white;
