@@ -138,4 +138,14 @@ fetch('modals.php')
         currentPlayingModal.style.display = 'block';
       }
     });
+
+    // Handle mouse wheel event to scale stars
+    document.addEventListener('wheel', (e) => {
+      const scaleAmount = e.deltaY * -0.01;
+      document.querySelectorAll('.star').forEach(star => {
+        const currentScale = parseFloat(star.style.transform.replace('scale(', '').replace(')', '')) || 1;
+        const newScale = Math.max(0.1, Math.min(5, currentScale + scaleAmount));
+        star.style.transform = `scale(${newScale})`;
+      });
+    });
   });
