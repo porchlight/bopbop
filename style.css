@@ -23,6 +23,7 @@ body {
   box-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 15px gold;
   cursor: pointer;
   z-index: 10;
+  animation: scaleAnimation 5s infinite alternate;
 }
 .star::after {
   content: '';
@@ -36,14 +37,27 @@ body {
   border-top: 20px solid gold;
   transform: rotate(-70deg);
 }
-.white-star {
-  background: white;
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
   cursor: default;
   z-index: 1;
+  animation: scaleAnimation 5s infinite alternate, colorAnimation 10s infinite;
 }
-.star.white-star::after {
-  border-top: 20px solid white;
+@keyframes scaleAnimation {
+  0% { transform: scale(1); }
+  100% { transform: scale(2); }
+}
+@keyframes colorAnimation {
+  0% { background-color: red; }
+  16% { background-color: yellow; }
+  33% { background-color: green; }
+  50% { background-color: cyan; }
+  66% { background-color: blue; }
+  83% { background-color: magenta; }
+  100% { background-color: red; }
 }
 .modal {
   display: none;
@@ -54,7 +68,6 @@ body {
   z-index: 100; /* Ensure modals have the highest z-index */
 }
 .modal-content {
-  background: #fff;
   margin: 10% auto;
   padding: 20px;
   width: 80%;
@@ -63,6 +76,7 @@ body {
 .close {
   float: right;
   cursor: pointer;
+  color: white;
 }
 footer {
   position: fixed;

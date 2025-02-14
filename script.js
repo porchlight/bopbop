@@ -31,6 +31,11 @@ fetch('modals.php')
       starEl.style.top = `${Math.random() * 90}%`;
       starEl.style.left = `${Math.random() * 90}%`;
       starEl.style.zIndex = 10; // Ensure yellow stars are on top
+      starEl.style.width = `${10 + Math.random() * 40}px`;
+      starEl.style.height = starEl.style.width;
+      starEl.style.backgroundColor = 'yellow';
+      starEl.style.animationDelay = `${Math.random() * 5}s`;
+      starEl.style.animationDuration = `${5 + Math.random() * 5}s`;
       document.body.appendChild(starEl);
 
       const modalWrapper = document.createElement('div');
@@ -80,24 +85,29 @@ fetch('modals.php')
     });
 
     // Apply random scaling to gold stars
-    document.querySelectorAll('.star:not(.white-star)').forEach(goldStar => {
+    document.querySelectorAll('.star').forEach(goldStar => {
       const scale = 0.5 + Math.random() * 4.5; // scales 20px base between 10-100px
       goldStar.style.transform += ` scale(${scale})`;
     });
 
-    // Create non-clickable white stars
+    // Create non-clickable circles with random colors and positions
     for (let i = 0; i < 100; i++) {
       const size = 10 + Math.random() * 40; // Ensures 10-50px
       const xPerc = Math.random() * 90;
       const yPerc = Math.random() * 90;
+      const color = `hsl(${Math.random() * 360}, 100%, 50%)`; // Random color
 
-      const starEl = document.createElement('div');
-      starEl.className = 'star white-star';
-      starEl.style.top = `${yPerc}%`;
-      starEl.style.left = `${xPerc}%`;
-      starEl.style.transform = `scale(${(size / 20).toFixed(2)})`;
-      starEl.style.zIndex = 1; // Ensure white stars are below yellow stars
-      document.body.appendChild(starEl);
+      const circleEl = document.createElement('div');
+      circleEl.className = 'circle';
+      circleEl.style.top = `${yPerc}%`;
+      circleEl.style.left = `${xPerc}%`;
+      circleEl.style.width = `${size}px`;
+      circleEl.style.height = circleEl.style.width;
+      circleEl.style.backgroundColor = color;
+      circleEl.style.position = 'absolute';
+      circleEl.style.animationDelay = `${Math.random() * 5}s`;
+      circleEl.style.animationDuration = `${5 + Math.random() * 5}s`;
+      document.body.appendChild(circleEl);
     }
 
     // Bind to the FINISH event for all SoundCloud widgets
@@ -137,15 +147,5 @@ fetch('modals.php')
       if (currentPlayingModal) {
         currentPlayingModal.style.display = 'block';
       }
-    });
-
-    // Handle mouse wheel event to scale stars
-    document.addEventListener('wheel', (e) => {
-      const scaleAmount = e.deltaY * -0.01;
-      document.querySelectorAll('.star').forEach(star => {
-        const currentScale = parseFloat(star.style.transform.replace('scale(', '').replace(')', '')) || 1;
-        const newScale = Math.max(0.1, Math.min(5, currentScale + scaleAmount));
-        star.style.transform = `scale(${newScale})`;
-      });
     });
   });
