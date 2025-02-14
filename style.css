@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  background: black;
+  height: 100vh;
+}
+.star {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: gold;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  box-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 15px gold;
+  cursor: pointer;
+  z-index: 10;
+}
+.star::after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 6px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid gold;
+  transform: rotate(-70deg);
+}
+.white-star {
+  background: white;
+  box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
+  cursor: default;
+  z-index: 1;
+}
+.star.white-star::after {
+  border-top: 20px solid white;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 100; /* Ensure modals have the highest z-index */
+}
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+}
+.close {
+  float: right;
+  cursor: pointer;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.5);
+}
