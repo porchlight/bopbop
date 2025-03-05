@@ -57,6 +57,7 @@ function loadStars(files) {
   const filteredFiles = files.filter(file => file.startsWith(`${selectedYear}-`));
 
   document.querySelectorAll('.star').forEach(star => star.remove());
+  document.querySelectorAll('.circle').forEach(circle => circle.remove());
   document.querySelectorAll('.modal').forEach(modal => modal.remove());
 
   filteredFiles.forEach((file, idx) => {
