@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  text-align: center;
+}
+
+section, header {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Add padding to elements within sections */
+section > * {
+  margin-bottom: 20px;
+}
+
+section iframe, section img {
+  max-width: 640px !important;
+}
+
+section p {
+  padding: 10px 5px;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  section, header {
+    padding: 15px;
+  }
+
+  section > * {
+    margin-bottom: 15px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  section, header {
+    padding: 10px;
+  }
+
+  section > * {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+}
