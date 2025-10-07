@@ -1,9 +1,18 @@
+html {
+  color-scheme: light dark;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
   text-align: center;
+  font-family: system-ui;
+  font-size: 1.25rem;
+}
+
+main {
+  max-width: min(70ch, 100% - 4rem);
+  margin-inline: auto;
 }
 
 section, header {
