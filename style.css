@@ -37,6 +37,18 @@ section p {
   line-height: 1.6;
 }
 
+/* New iframe layout rules */
+section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+section iframe {
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 300px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   section, header {
@@ -46,6 +58,12 @@ section p {
   section > * {
     margin-bottom: 15px;
     padding: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  section iframe {
+    flex: 1 1 100%;
   }
 }
 
