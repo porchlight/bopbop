@@ -32,6 +32,10 @@ section iframe, section img {
   max-width: 640px !important;
 }
 
+section iframe.featured, section img.featured {
+  max-width: 960px !important;
+}
+
 section p {
   padding: 10px 5px;
   line-height: 1.6;
@@ -44,7 +48,7 @@ section {
   gap: 1rem;
 }
 
-section iframe {
+section iframe:not(.featured), section img:not(.featured) {
   flex: 1 1 calc(50% - 0.5rem);
   min-width: 300px;
 }
